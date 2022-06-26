@@ -49,3 +49,5 @@ https://github.com/andrey-ampil
 2022 ©andrey-ampil
 
 ![example workflow](https://github.com/andrey-ampil/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg)
+
+Check that it's work: http://84.252.143.26:5000/admin
