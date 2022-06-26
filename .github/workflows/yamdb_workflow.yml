@@ -29,6 +29,10 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: tests
+    with:
+      context: api_yamdb/
+      push: true
+      tags: ampil/0169541b75d1:latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
