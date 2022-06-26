@@ -12,6 +12,7 @@ from rest_framework.response import Response
 from reviews.models import Review
 from titles.models import Category, Genre, Title
 from users.models import User
+
 from .filters import TitlesFilter
 from .mixins import ListCreateDeleteViewSet
 from .paginators import CustomPagination
@@ -58,9 +59,9 @@ class TitlesViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return TitlesReadOnlySerializer
-
         elif self.request.method in ('POST', 'PATCH', 'DELETE'):
             return TitlesCreateSerializer
+        return None
 
 
 class CommentViewSet(viewsets.ModelViewSet):

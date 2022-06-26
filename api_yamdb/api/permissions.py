@@ -40,7 +40,7 @@ class IsAdminOrReadOnly(permissions.BasePermission):
             if request.method in ('POST', 'DELETE'):
                 return request.user.role == User.ADMIN
             raise MethodNotAllowedException
-        return
+        return None
 
 
 class IsAdminOrReadOnlyTitles(permissions.BasePermission):
@@ -52,7 +52,7 @@ class IsAdminOrReadOnlyTitles(permissions.BasePermission):
             if request.method in ('POST', 'PATCH', 'DELETE'):
                 return request.user.role == User.ADMIN
             raise MethodNotAllowedException
-        return
+        return None
 
 
 class IsUserMethod(permissions.BasePermission):
@@ -60,7 +60,7 @@ class IsUserMethod(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method == 'GET':
             return request.user.role == 'user'
-        return
+        return None
 
 
 class IsAdminMethod(permissions.BasePermission):
@@ -68,7 +68,7 @@ class IsAdminMethod(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.method in ('DELETE', 'POST'):
             return request.user.role == User.ADMIN
-        return
+        return None
 
 
 class IsAdmin(permissions.BasePermission):
