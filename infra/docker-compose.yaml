@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
   web:
-    image: ampil/0169541b75d1:latest
+    image: ampil/yamdb_final:latest
     restart: always
     volumes:
       - static_value:/app/static/
