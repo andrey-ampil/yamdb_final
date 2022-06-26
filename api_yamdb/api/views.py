@@ -9,11 +9,9 @@ from rest_framework.decorators import action, api_view
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from reviews.models import Review
 from titles.models import Category, Genre, Title
 from users.models import User
-
 from .filters import TitlesFilter
 from .mixins import ListCreateDeleteViewSet
 from .paginators import CustomPagination
@@ -60,6 +58,7 @@ class TitlesViewSet(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return TitlesReadOnlySerializer
+
         elif self.request.method in ('POST', 'PATCH', 'DELETE'):
             return TitlesCreateSerializer
 
@@ -85,10 +84,9 @@ class ReviewViewSet(viewsets.ModelViewSet):
     serializer_class = ReviewSerializer
 
     def get_queryset(self):
-        review = Review.objects.filter(
+        return Review.objects.filter(
             title_id=self.kwargs.get('title_id')
         )
-        return review
 
     def perform_create(self, serializer):
         title = get_object_or_404(Title, id=self.kwargs['title_id'])
