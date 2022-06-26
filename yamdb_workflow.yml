@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ampil/yamdb_final:latest
+          tags: ampil/yamdb_final_2:latest
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_push_to_docker_hub
@@ -57,9 +57,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker pull ampil/yamdb_final:latest
+            sudo docker pull ampil/yamdb_final_2:latest
             sudo docker stop $(sudo docker ps -a -q)
-            sudo docker run --rm -d -p 5000:5000 ampil/yamdb_final:latest
+            sudo docker run --rm -d -p 5000:5000 ampil/yamdb_final_2:latest
   send_message:
     runs-on: ubuntu-latest
     needs: deploy
